@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "karsaaz-agent-api",
+		"name": "Karsaaz Agent API Collection",
+		"description": "API collection for Karsaaz Agent containing 89+ endpoints categorized by feature area.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Health & System",
+			"item": [
+				{
+					"name": "Root Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{backend_url}}/",
+							"host": ["{{backend_url}}"],
+							"path": [""]
+						}
+					}
+				},
+				{
+					"name": "Dedicated Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{backend_url}}/health",
+							"host": ["{{backend_url}}"],
+							"path": ["health"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"yourpassword\",\n    \"name\": \"John Doe\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{backend_url}}/api/v1/auth/register",
+							"host": ["{{backend_url}}"],
+							"path": ["api", "v1", "auth", "register"]
+						}
+					}
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"yourpassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{backend_url}}/api/v1/auth/login",
+							"host": ["{{backend_url}}"],
+							"path": ["api", "v1", "auth", "login"]
+						}
+					}
+				},
+				{
+					"name": "Get Me",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{backend_url}}/api/v1/auth/me",
+							"host": ["{{backend_url}}"],
+							"path": ["api", "v1", "auth", "me"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "3. User & Profile",
+			"item": [
+				{
+					"name": "Get Identities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{backend_url}}/api/v1/user/identities?user_id=123",
+							"host": ["{{backend_url}}"],
+							"path": ["api", "v1", "user", "identities"],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "123"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "4. Billing & Subscriptions",
+			"item": [
+				{
+					"name": "Checkout Session",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{backend_url}}/api/v1/billing/checkout-session",
+							"host": ["{{backend_url}}"],
+							"path": ["api", "v1", "billing", "checkout-session"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "5. Admin Analytics (Requires API Key)",
+			"item": [
+				{
+					"name": "Subscriptions Summary",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-Key",
+								"value": "{{admin_api_key}}"
+							}
+						],
+						"url": {
+							"raw": "{{backend_url}}/api/v1/admin/subscriptions/summary",
+							"host": ["{{backend_url}}"],
+							"path": ["api", "v1", "admin", "subscriptions", "summary"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "backend_url",
+			"value": "https://bot.karsaazagent.com"
+		},
+		{
+			"key": "frontend_url",
+			"value": "https://karsaazagent.com"
+		},
+		{
+			"key": "jwt_token",
+			"value": ""
+		},
+		{
+			"key": "admin_api_key",
+			"value": ""
+		}
+	]
+}
